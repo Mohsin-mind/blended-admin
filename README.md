@@ -1,4 +1,4 @@
-# Aranged Sugar Admin
+# Blended Admin
 
 ## Prerequisites
 

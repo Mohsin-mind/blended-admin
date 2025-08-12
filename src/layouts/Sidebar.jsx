@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import logo from '@/assets/images/svg/BlendedED_Logo.svg';
 import toggleIcon from '@/assets/images/svg/toggle_sidebar.svg';
 import logoutIcon from '@/assets/images/svg/login.svg';
+import { setCookie } from '@/utils/helper';
+import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar({ isCollapsed, setIsCollapsed }) {
+  const navigate = useNavigate();
   // Extract routes that should appear in sidebar
   const SIDE_BAR_ROUTE = PRIVATE_ROUTE_CONFIG[0].children[0].children.filter(
     f => f.isMainLayout
@@ -32,6 +35,13 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
         ? 'text-blended-blue_3 font-medium'
         : 'text-blended-gray_1 font-normal hover:bg-white/10'
     }`;
+
+  const handleLogout = () => {
+    setCookie('token', '', -1);
+    setCookie('adminDetail', '', -1);
+    window.location.href = '/login';
+    navigate('/login', { replace: true });
+  };
 
   return (
     <aside
@@ -118,7 +128,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
             </p>
           </div>
         </div>
-        <button className='w-full p-3 rounded transition-colors flex justify-start items-center gap-3 text-blended-gray_1 font-normal hover:bg-white/10'>
+        <button className='w-full p-3 rounded transition-colors flex justify-start items-center gap-3 text-blended-gray_1 font-normal hover:bg-white/10' onClick={handleLogout}>
           <img
             src={logoutIcon}
             alt='Logout'
