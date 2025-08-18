@@ -1,8 +1,7 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import InputField from '@/components/common/FormFields/InputField';
 import Button from '@/components/common/FormFields/Button';
-import logo from '@/assets/images/svg/BlendedED_Logo_blue.svg';
 import ToggleTab from '@/components/common/Navigation/ToggleTab';
 import LRFHeaderSection from '../LRF/Login/LRFHeaderSection';
 
@@ -17,9 +16,7 @@ function LoginFormSection() {
       {/* Tab Switcher - Absolutely positioned between sections */}
       <div className='absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 shadow-lg rounded-full'>
         <ToggleTab
-          options={[
-            { label: 'LOGIN', value: 'login' },
-          ]}
+          options={[{ label: 'LOGIN', value: 'login' }]}
           activeOption={activeTab}
           onOptionChange={setActiveTab}
           behavior='switch'

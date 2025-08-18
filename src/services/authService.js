@@ -4,7 +4,12 @@ import { handlePost } from './handlePost';
 
 // Login
 export async function login(credentials) {
-  const { data, meta } = await handlePost(api, 'POST', '/login', credentials);
+  const { data, meta } = await handlePost(
+    api,
+    'POST',
+    '/admin/login',
+    credentials
+  );
   if (meta.code) {
     setCookie('token', meta?.token);
     setCookie('adminDetail', JSON.stringify(data));
