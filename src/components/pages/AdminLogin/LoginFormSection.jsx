@@ -4,25 +4,21 @@ import InputField from '@/components/common/FormFields/InputField';
 import Button from '@/components/common/FormFields/Button';
 import logo from '@/assets/images/svg/BlendedED_Logo_blue.svg';
 import ToggleTab from '@/components/common/Navigation/ToggleTab';
+import LRFHeaderSection from '../LRF/Login/LRFHeaderSection';
 
 function LoginFormSection() {
   const [activeTab, setActiveTab] = useState('login');
 
   return (
     <div className='flex-1 w-full flex flex-col h-screen relative'>
-      {/* Top Section - Logo (20% height) */}
-      <div className='h-[20%] flex items-center justify-center bg-blended-white_2/30'>
-        <div className='text-center'>
-          <img src={logo} alt='BlendED' className='h-12 mx-auto' />
-        </div>
-      </div>
+      {/* Top Section - Logo */}
+      <LRFHeaderSection />
 
       {/* Tab Switcher - Absolutely positioned between sections */}
       <div className='absolute top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 shadow-lg rounded-full'>
         <ToggleTab
           options={[
             { label: 'LOGIN', value: 'login' },
-            { label: 'SIGNUP', value: 'signup' },
           ]}
           activeOption={activeTab}
           onOptionChange={setActiveTab}
