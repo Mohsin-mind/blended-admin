@@ -56,8 +56,13 @@ export default {
           gray_5: '#696D74',
           gray_6: '#DAE4EE',
           gray_7: '#E6E7E8',
+          gray_8: '#e2ebf4',
+          gray_9: '#373C45',
+          grey_10: "#788297",
           white_1: '#F7F8FA',
           white_2: '#FDFDFD',
+          red_1: '#A20003',
+          red_2: '#FFE7E7',
         }
       },
       backgroundImage: {

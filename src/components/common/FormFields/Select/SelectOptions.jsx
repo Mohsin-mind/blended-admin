@@ -1,6 +1,6 @@
 import { ComboboxOptions } from '@headlessui/react';
 import PropTypes from 'prop-types';
-import Loader from '../../Loader';
+import Loader from '../../UI/Loader';
 
 export default function SelectOptions({
   children,

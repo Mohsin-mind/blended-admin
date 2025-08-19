@@ -1,6 +1,6 @@
 import { useFormLoading } from '@/contexts/FormLoadingContext';
 import PropTypes from 'prop-types';
-import Loader from '../Loader';
+import Loader from '../UI/Loader';
 import { classNames } from '@/utils/helper';
 
 function Button({ type = 'button', title, className = '' }) {

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import cn from '@/lib/clsx';
 import Pagination from './Pagination';
 import SORT_ORDERS from '@/utils/constant/tableCont';
-import Loader from '../Loader';
+import Loader from '../UI/Loader';
 
 function GenericTable({
   columns = [],
@@ -11,6 +11,7 @@ function GenericTable({
   tableWrapperClass = '',
   stickyHeaderClass = '',
   showCheckbox = true,
+  showAvatar = true,
   onSelectionChange = () => {
     return;
   },
@@ -84,7 +85,7 @@ function GenericTable({
                     <th
                       key={column.key}
                       className={cn(
-                        'px-6 py-3.5 text-left bg-[#eef0f4] text-black',
+                        'px-6 py-4 text-left bg-white text-blended-gray_1 font-medium text-sm border-b border-blended-gray_7',
                         column.key === 'action' &&
                           column.isSticky &&
                           'min-w-fit sticky right-0 shadow-2xl'
@@ -115,7 +116,7 @@ function GenericTable({
                             onClick={e => e.stopPropagation()} // prevent triggering sort
                           />
                         )}
-                        <span className='text-14 text-black font-medium font-poppins whitespace-nowrap'>
+                        <span className='text-sm text-blended-gray_1 font-medium whitespace-nowrap'>
                           {column.title}
                         </span>
 
@@ -149,7 +150,7 @@ function GenericTable({
 
               <tbody>
                 {safeData.map((row, rowIndex) => (
-                  <tr className='group relative'>
+                  <tr key={rowIndex} className='group relative'>
                     {columns.map(column => {
                       const cellValue = row[column.key];
                       const childValue = column.childKey
@@ -160,13 +161,13 @@ function GenericTable({
                         <td
                           key={column.key}
                           className={cn(
-                            'bg-white px-6 py-3 group-hover:bg-gray-50 min-w-max border-b border-b-black/10 text-16 text-grayDark font-regular whitespace-nowrap',
+                            'bg-white px-6 py-4 group-hover:bg-blended-gray_7 min-w-max border-b border-blended-gray_7 text-sm text-blended-blue_6 font-normal whitespace-nowrap',
                             column.key === 'action' &&
                               column.isSticky &&
                               'min-w-fit sticky right-0 shadow-2xl bg-white border-b',
                             column.key === 'action' &&
                               !column.isSticky &&
-                              'min-w-fit relative border-l-1 border-l-black',
+                              'min-w-fit relative border-l border-l-blended-gray_7',
                             column.key === 'sr_no' && 'min-w-[80px]'
                           )}
                         >

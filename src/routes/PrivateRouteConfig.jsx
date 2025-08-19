@@ -1,6 +1,7 @@
 import MainLayout from '@/layouts/MainLayout';
 import Dashboard from '@/pages/Dashboard';
 import ManageUsers from '@/pages/ManageUsers';
+import UserManagement from '@/pages/UserManagement';
 import PrivateRouteValidate from './PrivateRouteValidate';
 import ChangePassword from '@/pages/ChangePassword';
 import dashboardIcon from '@/assets/images/svg/dashboard.svg';
@@ -44,7 +45,7 @@ const PRIVATE_ROUTE_CONFIG = [
             icon: userIcon,
             section: 'Main Menu',
             isMainLayout: true,
-            element: <div>User Management Page</div>,
+            element: <UserManagement />,
           },
           {
             path: '/courses',
