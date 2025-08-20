@@ -6,7 +6,7 @@ export const mockTeachers = [
     status: 'ASSIGNED',
     lastActive: '2 minutes ago',
     assignedCourses: 'AI Ethics, ML Foundations',
-    avatar: 'AK'
+    avatar: 'AK',
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const mockTeachers = [
     status: 'ASSIGNED',
     lastActive: '1 hour ago',
     assignedCourses: 'Data Science, Statistics',
-    avatar: 'MR'
+    avatar: 'MR',
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const mockTeachers = [
     status: 'INACTIVE',
     lastActive: 'Jan 19, 2020',
     assignedCourses: 'Machine Learning',
-    avatar: 'EG'
+    avatar: 'EG',
   },
   {
     id: 4,
@@ -33,8 +33,8 @@ export const mockTeachers = [
     status: 'SUSPENDED',
     lastActive: '12 hours ago',
     assignedCourses: 'Computer Vision',
-    avatar: 'DS'
-  }
+    avatar: 'DS',
+  },
 ];
 
 export const mockStudents = [
@@ -45,7 +45,7 @@ export const mockStudents = [
     status: 'AVAILABLE',
     lastActive: '1 hour ago',
     enrolledCourses: 'AI Ethics, ML Foundations',
-    avatar: 'JS'
+    avatar: 'JS',
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ export const mockStudents = [
     status: 'AVAILABLE',
     lastActive: '30 minutes ago',
     enrolledCourses: 'Data Science, Statistics',
-    avatar: 'EW'
+    avatar: 'EW',
   },
   {
     id: 3,
@@ -63,8 +63,8 @@ export const mockStudents = [
     status: 'INACTIVE',
     lastActive: '2 days ago',
     enrolledCourses: 'Machine Learning',
-    avatar: 'AJ'
-  }
+    avatar: 'AJ',
+  },
 ];
 
 export const mockInternalStaff = [
@@ -75,18 +75,18 @@ export const mockInternalStaff = [
     status: 'CURRENTLY UNAVAILABLE',
     lastActive: '30 minutes ago',
     department: 'IT Support',
-    avatar: 'SJ'
-  }
+    avatar: 'SJ',
+  },
 ];
 
 // Helper function to get status variant for Badge component
-export const getStatusVariant = (status) => {
+export const getStatusVariant = status => {
   const statusMap = {
-    'AVAILABLE': 'available',
-    'ASSIGNED': 'assigned',
-    'INACTIVE': 'inactive',
-    'SUSPENDED': 'suspended',
-    'CURRENTLY UNAVAILABLE': 'unavailable'
+    AVAILABLE: 'available',
+    ASSIGNED: 'assigned',
+    INACTIVE: 'inactive',
+    SUSPENDED: 'suspended',
+    'CURRENTLY UNAVAILABLE': 'unavailable',
   };
   return statusMap[status] || 'default';
 };

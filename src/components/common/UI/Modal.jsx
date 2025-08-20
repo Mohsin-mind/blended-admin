@@ -12,11 +12,11 @@ const Modal = ({
   showCloseButton = true,
   className = '',
   overlayClassName = '',
-  contentClassName = ''
+  contentClassName = '',
 }) => {
   // Handle escape key to close modal
   useEffect(() => {
-    const handleEscape = (event) => {
+    const handleEscape = event => {
       if (event.key === 'Escape' && isOpen) {
         onClose();
       }
@@ -35,7 +35,7 @@ const Modal = ({
   }, [isOpen, onClose]);
 
   // Handle overlay click to close modal
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = event => {
     if (event.target === event.currentTarget) {
       onClose();
     }
@@ -48,7 +48,7 @@ const Modal = ({
     md: 'max-w-2xl',
     lg: 'max-w-4xl',
     xl: 'max-w-6xl',
-    full: 'max-w-full mx-4'
+    full: 'max-w-full mx-4',
   };
 
   return (
@@ -69,20 +69,20 @@ const Modal = ({
         )}
       >
         {/* Header */}
-        <div className="flex items-start justify-between pb-5 mb-5 border-b border-blended-gray_7">
-          <div className="flex-1 pr-4">
+        <div className='flex items-start justify-between pb-5 mb-5 border-b border-blended-gray_7'>
+          <div className='flex-1 pr-4'>
             {title && (
-              <h2 className="text-3xl font-semibold text-blended-blue_7 mb-2">
+              <h2 className='text-3xl font-semibold text-blended-blue_7 mb-2'>
                 {title}
               </h2>
             )}
             {description && (
-              <p className="text-sm text-blended-gray_9 max-w-lg">
+              <p className='text-sm text-blended-gray_9 max-w-lg'>
                 {description}
               </p>
             )}
           </div>
-          
+
           {showCloseButton && (
             <button
               onClick={onClose}
@@ -94,19 +94,19 @@ const Modal = ({
                 'hover:bg-gray-50 transition-colors',
                 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
               )}
-              aria-label="Close modal"
+              aria-label='Close modal'
             >
               <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className='w-4 h-4'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
+                  d='M6 18L18 6M6 6l12 12'
                 />
               </svg>
             </button>
@@ -114,9 +114,7 @@ const Modal = ({
         </div>
 
         {/* Content */}
-        <div className={cn(className)}>
-          {children}
-        </div>
+        <div className={cn(className)}>{children}</div>
       </div>
     </div>
   );
@@ -132,7 +130,7 @@ Modal.propTypes = {
   showCloseButton: PropTypes.bool,
   className: PropTypes.string,
   overlayClassName: PropTypes.string,
-  contentClassName: PropTypes.string
+  contentClassName: PropTypes.string,
 };
 
 export default Modal;

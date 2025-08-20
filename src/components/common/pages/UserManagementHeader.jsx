@@ -19,14 +19,14 @@ const UserManagementHeader = ({
   tabs = [
     { value: 'students', label: 'STUDENTS' },
     { value: 'teachers', label: 'TEACHERS' },
-    { value: 'internal-staff', label: 'INTERNAL STAFF' }
+    { value: 'internal-staff', label: 'INTERNAL STAFF' },
   ],
-  className = ''
+  className = '',
 }) => {
-  const getInviteButtonText = (tab) => {
+  const getInviteButtonText = tab => {
     const buttonTextMap = {
       teachers: 'Invite Teacher',
-      'internal-staff': 'Invite Staff'
+      'internal-staff': 'Invite Staff',
     };
     return buttonTextMap[tab] || 'Invite Teacher';
   };
@@ -41,32 +41,30 @@ const UserManagementHeader = ({
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Title, Description, Search and Export Row */}
-      <div className="flex justify-between items-start gap-6">
+      <div className='flex justify-between items-start gap-6'>
         {/* Title and Description */}
-        <div className="flex-1">
-          <h1 className="text-3xl font-semibold text-blended-blue_7 mb-2">
+        <div className='flex-1'>
+          <h1 className='text-3xl font-semibold text-blended-blue_7 mb-2'>
             {title}
           </h1>
-          <p className="text-blended-gray_9 text-sm max-w-sm">
-            {description}
-          </p>
+          <p className='text-blended-gray_9 text-sm max-w-sm'>{description}</p>
         </div>
 
         {/* Search and Export */}
-        <div className="flex items-center gap-3">
-          <div className="w-80">
+        <div className='flex items-center gap-3'>
+          <div className='w-80'>
             <SearchField
-              placeholder="Search by Name & Email..."
+              placeholder='Search by Name & Email...'
               value={searchValue}
               onChange={onSearchChange}
               onSearch={onSearch}
               searchFields={searchFields}
-              inputClassName="px-4 py-2.5"
+              inputClassName='px-4 py-2.5'
             />
           </div>
           <ActionButton
-            variant="secondary"
-            className="px-4 py-3"
+            variant='secondary'
+            className='px-4 py-3'
             onClick={handleExport}
             icon={ExportIcon}
           >
@@ -76,23 +74,23 @@ const UserManagementHeader = ({
       </div>
 
       {/* Tabs and Invite Button Row */}
-      <div className="flex justify-between items-center">
+      <div className='flex justify-between items-center'>
         <ToggleTab
           options={tabs}
           activeOption={activeTab}
           onOptionChange={onTabChange}
-          behavior="switch"
+          behavior='switch'
         />
-        {activeTab !== 'students' && 
+        {activeTab !== 'students' && (
           <ActionButton
-            variant="secondary"
-            size="md"
+            variant='secondary'
+            size='md'
             onClick={onInvite}
             icon={PlusIcon}
           >
             {getInviteButtonText(activeTab)}
           </ActionButton>
-        }
+        )}
       </div>
     </div>
   );
@@ -112,10 +110,10 @@ UserManagementHeader.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      label: PropTypes.string.isRequired,
     })
   ),
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default UserManagementHeader;

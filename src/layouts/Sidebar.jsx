@@ -39,7 +39,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
     }`;
 
   const handleLogout = () => {
-    setCookie('token', '', -1);
+    setCookie('adminToken', '', -1);
     setCookie('adminDetail', '', -1);
     window.location.href = '/login';
     navigate('/login', { replace: true });

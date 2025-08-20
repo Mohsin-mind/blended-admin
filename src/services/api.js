@@ -16,7 +16,7 @@ const api = axios.create({
 // Request interceptor to attach auth token
 api.interceptors.request.use(
   config => {
-    const token = getCookie('token');
+    const token = getCookie('adminToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -35,8 +35,8 @@ function handleBadRequest(message) {
 
 function handleUnauthorized(message) {
   const isAuth = isAuthenticated();
-  setCookie('token', '', -1);
-  setCookie('admin', '', -1);
+  setCookie('adminToken', '', -1);
+  setCookie('adminDetail', '', -1);
   showToast('error', message || CONST.HTTP_ERROR_MSG.UNAUTHORIZED);
   if (isAuth) {
     window.location.reload(true);

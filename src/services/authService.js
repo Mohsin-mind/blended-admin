@@ -10,10 +10,6 @@ export async function login(credentials) {
     '/admin/login',
     credentials
   );
-  if (meta.code) {
-    setCookie('token', meta?.token);
-    setCookie('adminDetail', JSON.stringify(data));
-  }
   return { data, meta };
 }
 
@@ -51,29 +47,29 @@ export async function logout() {
   } catch (error) {
     handleError(error);
   } finally {
-    setCookie('token', '', -1);
+    setCookie('adminToken', '', -1);
     setCookie('adminDetail', '', -1);
     window.location.href = '/login';
   }*/
-  setCookie('token', '', -1);
+  setCookie('adminToken', '', -1);
   setCookie('adminDetail', '', -1);
   window.location.href = '/login';
 }
 
 // Check if user is authenticated
 export function isAuthenticated() {
-  return !!getCookie('token');
+  return !!getCookie('adminToken');
 }
 
 // Get stored user data
 export function getUser() {
-  const user = getCookie('admin');
+  const user = getCookie('adminDetail');
   return user ? JSON.parse(user) : null;
 }
 
 // Get stored token
 export function getToken() {
-  return getCookie('token');
+  return getCookie('adminToken');
 }
 
 const authService = {

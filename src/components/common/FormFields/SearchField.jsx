@@ -41,8 +41,6 @@ function SearchField({
     }
   };
 
-
-
   return (
     <div className={className}>
       <div className='relative'>

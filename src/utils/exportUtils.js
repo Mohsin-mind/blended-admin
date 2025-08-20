@@ -24,19 +24,22 @@ export const exportToCSV = (data, columns, filename = 'export.csv') => {
         .map(col => {
           const value = row[col.key];
           // Handle values that contain commas or quotes
-          if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
+          if (
+            typeof value === 'string' &&
+            (value.includes(',') || value.includes('"'))
+          ) {
             return `"${value.replace(/"/g, '""')}"`;
           }
           return value || '';
         })
         .join(',');
-    })
+    }),
   ].join('\n');
 
   // Create and download file
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
-  
+
   if (link.download !== undefined) {
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
@@ -57,6 +60,6 @@ export const exportToCSV = (data, columns, filename = 'export.csv') => {
 export const exportUserData = (data, activeTab, columns) => {
   const timestamp = new Date().toISOString().split('T')[0];
   const filename = `${activeTab}-export-${timestamp}.csv`;
-  
+
   exportToCSV(data, columns, filename);
 };

@@ -17,7 +17,7 @@ const Checkbox = ({
       <input
         id={id}
         name={name}
-        type="checkbox"
+        type='checkbox'
         checked={checked}
         onChange={onChange}
         disabled={disabled}
@@ -45,7 +45,7 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  labelClassName: PropTypes.string
+  labelClassName: PropTypes.string,
 };
 
 export default Checkbox;
