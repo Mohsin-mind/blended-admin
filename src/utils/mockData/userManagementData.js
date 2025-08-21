@@ -82,11 +82,17 @@ export const mockInternalStaff = [
 // Helper function to get status variant for Badge component
 export const getStatusVariant = status => {
   const statusMap = {
+    // Mock data statuses
     AVAILABLE: 'available',
     ASSIGNED: 'assigned',
     INACTIVE: 'inactive',
     SUSPENDED: 'suspended',
     'CURRENTLY UNAVAILABLE': 'unavailable',
+    // API response statuses
+    active: 'available',
+    'pending_verification': 'inactive',
+    inactive: 'inactive',
+    suspended: 'suspended',
   };
   return statusMap[status] || 'default';
 };

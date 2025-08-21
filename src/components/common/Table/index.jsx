@@ -11,7 +11,7 @@ function GenericTable({
   tableWrapperClass = '',
   stickyHeaderClass = '',
   showCheckbox = true,
-  showAvatar = true,
+  showAvatar = true, // eslint-disable-line no-unused-vars
   onSelectionChange = () => {
     return;
   },
@@ -20,6 +20,9 @@ function GenericTable({
     return;
   },
   pageSize = 10,
+  onPageSizeChange = () => {
+    return;
+  },
   totalItems = 0,
   loading = false,
   sortBy = '',
@@ -99,9 +102,12 @@ function GenericTable({
                           if (!column.isSortable) return;
                           const sortKey = column.sortKey || column.key;
                           const nextOrder =
-                            sortBy === sortKey && sortOrder === SORT_ORDERS.ASC
-                              ? SORT_ORDERS.DESC
+                            sortBy === sortKey
+                              ? sortOrder === SORT_ORDERS.ASC
+                                ? SORT_ORDERS.DESC
+                                : SORT_ORDERS.ASC
                               : SORT_ORDERS.ASC;
+
                           onSortChange(sortKey, nextOrder);
                         }}
                       >
@@ -150,7 +156,10 @@ function GenericTable({
 
               <tbody>
                 {safeData.map((row, rowIndex) => (
-                  <tr key={rowIndex} className='group relative'>
+                  <tr
+                    key={`row-${String(rowIndex)}`}
+                    className='group relative'
+                  >
                     {columns.map(column => {
                       const cellValue = row[column.key];
                       const childValue = column.childKey
@@ -212,10 +221,10 @@ function GenericTable({
 
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(totalItems / pageSize)}
             pageSize={pageSize}
             totalItems={totalItems}
             onPageChange={onPageChange}
+            onPageSizeChange={onPageSizeChange}
           />
         </>
       ) : (

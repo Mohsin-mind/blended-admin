@@ -5,7 +5,7 @@ import GenericTable from '@/components/common/Table';
 import Badge from '@/components/common/UI/Badge';
 import ActionButton from '@/components/common/FormFields/ActionButton';
 import Modal from '@/components/common/UI/Modal';
-import Button from '@/components/common/FormFields/Button';
+
 import Checkbox from '@/components/common/FormFields/Checkbox';
 import { getStatusVariant } from '@/utils/mockData/userManagementData';
 import { exportUserData } from '@/utils/exportUtils';
@@ -23,6 +23,7 @@ const UserManagement = () => {
   const [activeTab, setActiveTab] = useState('teachers');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
@@ -56,11 +57,11 @@ const UserManagement = () => {
     error,
     mutate,
   } = useSWR(
-    ['users', activeTab, currentPage, sortBy, sortOrder, searchValue],
+    ['users', activeTab, currentPage, pageSize, sortBy, sortOrder, searchValue],
     async () => {
       const params = {
         page: currentPage,
-        limit: 10,
+        limit: pageSize,
         role: getRoleFromTab(activeTab),
         status: USER_STATUS.ALL,
         sortBy,
@@ -95,6 +96,12 @@ const UserManagement = () => {
   // Handle page change
   const handlePageChange = page => {
     setCurrentPage(page);
+  };
+
+  // Handle page size change
+  const handlePageSizeChange = newPageSize => {
+    setPageSize(newPageSize);
+    setCurrentPage(1); // Reset to first page when changing page size
   };
 
   // Handle sort change
@@ -175,18 +182,28 @@ const UserManagement = () => {
         key: 'name',
         title: 'NAME',
         isSortable: true,
-        renderContent: (value, _, row) => (
-          <div className='flex items-center gap-3'>
-            {row.avatar && (
+        renderContent: (value, _, row) => {
+          // Generate avatar initials from name
+          const getInitials = name => {
+            return name
+              .split(' ')
+              .map(word => word.charAt(0))
+              .join('')
+              .toUpperCase()
+              .slice(0, 2);
+          };
+
+          return (
+            <div className='flex items-center gap-3'>
               <div className='w-10 h-10 bg-blended-blue_3 rounded-full flex items-center justify-center'>
                 <span className='text-white text-sm font-medium'>
-                  {row.avatar}
+                  {getInitials(value)}
                 </span>
               </div>
-            )}
-            <span className='font-medium'>{value}</span>
-          </div>
-        ),
+              <span className='font-medium'>{value}</span>
+            </div>
+          );
+        },
       },
       {
         key: 'email',
@@ -208,7 +225,15 @@ const UserManagement = () => {
         key: 'lastActive',
         title: 'LAST ACTIVE',
         isSortable: true,
-        renderContent: value => <span>{value}</span>,
+        renderContent: value => {
+          if (!value) return <span className='text-blended-gray_1'>Never</span>;
+          try {
+            const date = new Date(value);
+            return <span>{date.toLocaleDateString()}</span>;
+          } catch {
+            return <span>{value}</span>;
+          }
+        },
       },
     ];
 
@@ -218,21 +243,21 @@ const UserManagement = () => {
         key: 'assignedCourses',
         title: 'ASSIGNED COURSES',
         isSortable: false,
-        renderContent: value => <span>{value || '-'}</span>,
+        renderContent: () => <span className='text-blended-gray_1'>-</span>,
       });
     } else if (tab === 'students') {
       baseColumns.push({
         key: 'enrolledCourses',
         title: 'ENROLLED COURSES',
         isSortable: false,
-        renderContent: value => <span>{value || '-'}</span>,
+        renderContent: () => <span className='text-blended-gray_1'>-</span>,
       });
     } else if (tab === 'internal-staff') {
       baseColumns.push({
         key: 'department',
         title: 'DEPARTMENT',
         isSortable: false,
-        renderContent: value => <span>{value || '-'}</span>,
+        renderContent: () => <span className='text-blended-gray_1'>-</span>,
       });
     }
 
@@ -267,14 +292,14 @@ const UserManagement = () => {
 
   // Handle export
   const handleExport = () => {
-    const data = usersData?.data || [];
+    const data = usersData?.data?.users || [];
     const columns = getTableColumns(activeTab);
     exportUserData(data, activeTab, columns);
   };
 
   const columns = getTableColumns(activeTab);
-  const data = usersData?.data || [];
-  const totalItems = usersData?.meta?.total || 0;
+  const data = usersData?.data?.users || [];
+  const totalItems = usersData?.data?.pagination?.total || 0;
   const loading = !usersData && !error;
 
   // Handle error state
@@ -304,8 +329,9 @@ const UserManagement = () => {
           showAvatar
           currentPage={currentPage}
           onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
           totalItems={totalItems}
-          pageSize={10}
+          pageSize={pageSize}
           loading={loading}
           sortBy={sortBy}
           sortOrder={sortOrder}
