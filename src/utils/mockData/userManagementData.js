@@ -90,7 +90,7 @@ export const getStatusVariant = status => {
     'CURRENTLY UNAVAILABLE': 'unavailable',
     // API response statuses
     active: 'available',
-    'pending_verification': 'inactive',
+    pending_verification: 'inactive',
     inactive: 'inactive',
     suspended: 'suspended',
   };

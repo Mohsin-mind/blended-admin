@@ -1,6 +1,6 @@
 const SORT_ORDERS = {
-  ASC: 'ASC',
-  DESC: 'DESC',
+  ASC: 'asc',
+  DESC: 'desc',
 };
 
 export default SORT_ORDERS;

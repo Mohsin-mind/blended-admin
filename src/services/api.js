@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import axios from 'axios';
 import { getCookie, setCookie } from '@/utils/helper';
 import CONST from '@/utils/constant';

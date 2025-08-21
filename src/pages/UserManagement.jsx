@@ -24,7 +24,7 @@ const UserManagement = () => {
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [sortBy, setSortBy] = useState('name');
+  const [sortBy, setSortBy] = useState('firstName');
   const [sortOrder, setSortOrder] = useState('asc');
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,8 +89,8 @@ const UserManagement = () => {
     setActiveTab(tab);
     setSearchValue('');
     setCurrentPage(1);
-    setSortBy('name');
-    setSortOrder('asc');
+    setSortBy('firstName');
+    setSortOrder('asc'); // Already lowercase
   };
 
   // Handle page change
@@ -182,24 +182,10 @@ const UserManagement = () => {
         key: 'name',
         title: 'NAME',
         isSortable: true,
-        renderContent: (value, _, row) => {
-          // Generate avatar initials from name
-          const getInitials = name => {
-            return name
-              .split(' ')
-              .map(word => word.charAt(0))
-              .join('')
-              .toUpperCase()
-              .slice(0, 2);
-          };
-
+        sortKey: 'firstName',
+        renderContent: value => {
           return (
             <div className='flex items-center gap-3'>
-              <div className='w-10 h-10 bg-blended-blue_3 rounded-full flex items-center justify-center'>
-                <span className='text-white text-sm font-medium'>
-                  {getInitials(value)}
-                </span>
-              </div>
               <span className='font-medium'>{value}</span>
             </div>
           );
@@ -267,19 +253,23 @@ const UserManagement = () => {
       title: 'ACTIONS',
       isSortable: false,
       isSticky: true,
-      renderContent: (_, __, row) => (
+      renderContent: (_, __) => (
         <div className='flex items-center gap-2'>
           <ActionButton
             variant='none'
             size='sm'
-            onClick={() => console.log('View', row.id)}
+            onClick={() => {
+              // TODO: Implement view functionality
+            }}
             icon={EyeIcon}
             className='p-1'
           />
           <ActionButton
             variant='none'
             size='sm'
-            onClick={() => console.log('Edit', row.id)}
+            onClick={() => {
+              // TODO: Implement edit functionality
+            }}
             icon={EditIcon}
             className='p-1'
           />

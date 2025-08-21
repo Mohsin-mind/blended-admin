@@ -39,7 +39,6 @@ export function updateUserStatus({ userId, status }) {
 }
 // Logout user
 export async function logout() {
-  // eslint-disable-next-line no-warning-comments
   // TODO : This is useful in future
 
   /*try {

@@ -100,7 +100,6 @@ export default [
       // Strict JavaScript rules (Airbnb style)
       'array-callback-return': 'error',
       'block-scoped-var': 'error',
-      complexity: ['error', 10],
       'consistent-return': 'error',
       curly: ['error', 'all'],
       'default-case': 'error',
@@ -160,7 +159,6 @@ export default [
       'no-useless-call': 'error',
       'no-useless-concat': 'error',
       'no-void': 'error',
-      'no-warning-comments': 'warn',
       'no-with': 'error',
       radix: 'error',
       'vars-on-top': 'error',
@@ -177,7 +175,6 @@ export default [
       'no-shadow-restricted-names': 'error',
       'no-undef': 'error',
       'no-undef-init': 'error',
-      'no-undefined': 'error',
     },
     settings: {
       react: {

@@ -1,5 +1,5 @@
 import cn from '@/lib/clsx';
-import Button from '../FormFields/Button';
+import ActionButton from '../FormFields/ActionButton';
 
 const DEFAULT_PAGE_SIZE_OPTIONS = [10, 25, 50, 100]; // eslint-disable-line no-magic-numbers
 
@@ -84,12 +84,12 @@ export default function Pagination({
     >
       {/* Left side - Show dropdown and results count */}
       <div className='flex items-center gap-4'>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-2 relative'>
           <span className='text-sm text-blended-gray_1 font-medium'>Show</span>
           <select
             value={pageSize}
             onChange={handlePageSizeChange}
-            className='border border-blended-gray_2 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blended-blue_3 focus:border-blended-blue_3'
+            className='appearance-none border border-blended-gray_2 rounded-md px-3 py-1.5 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blended-blue_3 focus:border-blended-blue_3 min-w-[80px]'
           >
             {pageSizeOptions.map(size => (
               <option key={size} value={size}>
@@ -97,6 +97,7 @@ export default function Pagination({
               </option>
             ))}
           </select>
+          <span className='absolute icon-arrow-down text-base right-2 top-1/2 -translate-y-1/2 pointer-events-none' />
         </div>
 
         {totalItems > 0 && (
@@ -110,31 +111,15 @@ export default function Pagination({
       {totalPages > 1 && (
         <div className='flex items-center gap-2'>
           {/* Previous button */}
-          <Button
-            variant='outline'
+          <ActionButton
+            variant='lightBlue'
             size='sm'
             onClick={handlePrevious}
             disabled={currentPage === 1}
-            className='px-3 py-1.5 text-sm border-blended-gray_2 text-blended-gray_1 hover:bg-blended-gray_7 disabled:opacity-50 disabled:cursor-not-allowed'
+            className='px-3 py-1.5 text-sm hover:bg-blended-gray_7 disabled:opacity-70 disabled:cursor-not-allowed h-8'
           >
-            <svg
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              className='w-4 h-4'
-            >
-              <path
-                d='M10 12L6 8L10 4'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-            <span>Previous</span>
-          </Button>
+            <span className='icon-back text-base mr-1' />
+          </ActionButton>
 
           {/* Page numbers */}
           <div className='flex items-center gap-1'>
@@ -142,54 +127,38 @@ export default function Pagination({
               const key = page === '...' ? `ellipsis-${index}` : `page-${page}`;
               return (
                 <div key={key}>
-                {page === '...' ? (
-                  <span className='px-3 py-1.5 text-sm text-blended-gray_1'>
-                    ...
-                  </span>
-                ) : (
-                  <button
-                    onClick={() => handlePageClick(page)}
-                    className={cn(
-                      'w-8 h-8 rounded-full text-sm font-medium transition-colors',
-                      page === currentPage
-                        ? 'bg-black text-white'
-                        : 'text-blended-gray_1 hover:bg-blended-gray_7'
-                    )}
-                  >
-                    {page}
-                  </button>
-                )}
-              </div>
+                  {page === '...' ? (
+                    <span className='px-3 py-1.5 text-sm text-blended-gray_1'>
+                      ...
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => handlePageClick(page)}
+                      className={cn(
+                        'w-8 h-8 rounded-full text-sm font-medium transition-colors',
+                        page === currentPage
+                          ? 'bg-blended-blue_3 text-white'
+                          : 'text-blended-gray_1 hover:bg-blended-gray_7'
+                      )}
+                    >
+                      {page}
+                    </button>
+                  )}
+                </div>
               );
             })}
           </div>
 
           {/* Next button */}
-          <Button
-            variant='outline'
+          <ActionButton
+            variant='lightBlue'
             size='sm'
             onClick={handleNext}
             disabled={currentPage === totalPages}
-            className='px-3 py-1.5 text-sm border-blended-gray_2 text-blended-gray_1 hover:bg-blended-gray_7 disabled:opacity-50 disabled:cursor-not-allowed'
+            className='text-sm hover:bg-blended-gray_7 disabled:opacity-50 disabled:cursor-not-allowed h-8'
           >
-            <span>Next</span>
-            <svg
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-              className='w-4 h-4'
-            >
-              <path
-                d='M6 4L10 8L6 12'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </Button>
+            <span className='icon-next-arrow text-base mr-1' />
+          </ActionButton>
         </div>
       )}
     </div>

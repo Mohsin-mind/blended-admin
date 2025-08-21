@@ -4,7 +4,6 @@ import cn from '@/lib/clsx';
 import { ButtonVariants } from './ButtonVariants';
 import Loader from '../../UI/Loader';
 
-// eslint-disable-next-line complexity
 function Button({
   type = 'button',
   title,

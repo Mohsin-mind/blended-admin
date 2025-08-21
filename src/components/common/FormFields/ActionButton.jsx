@@ -25,6 +25,8 @@ const ActionButton = ({
       'bg-blended-blue_7 text-white focus:ring-blended-blue_3 focus:outline-none focus:ring-2 focus:ring-offset-2',
     secondary:
       'bg-white text-blended-blue_7 focus:ring-blended-blue_3 focus:outline-none focus:ring-2 focus:ring-offset-2',
+    lightBlue:
+      'bg-blended-blue_3 text-white focus:ring-blended-blue_3 focus:outline-none focus:ring-2 focus:ring-offset-2',
     outline:
       'bg-transparent text-blended-gray_1 border border-blended-gray_2 focus:ring-blended-gray_2 focus:outline-none focus:ring-2 focus:ring-offset-2',
     danger:

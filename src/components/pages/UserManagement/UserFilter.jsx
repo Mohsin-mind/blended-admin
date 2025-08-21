@@ -1,4 +1,3 @@
-/* eslint-disable no-warning-comments */
 import { useFormContext } from 'react-hook-form';
 import InputField from '@/components/common/FormFields/InputField';
 import Select from '@/components/common/FormFields/Select';
