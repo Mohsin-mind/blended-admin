@@ -1,7 +1,6 @@
 import cn from '@/lib/clsx';
 import ActionButton from '../FormFields/ActionButton';
-
-const DEFAULT_PAGE_SIZE_OPTIONS = [10, 25, 50, 100]; // eslint-disable-line no-magic-numbers
+import { DEFAULT_PAGE_SIZE_OPTIONS } from '@/utils/constant/allConstant';
 
 export default function Pagination({
   currentPage,
@@ -118,7 +117,7 @@ export default function Pagination({
             disabled={currentPage === 1}
             className='px-3 py-1.5 text-sm hover:bg-blended-gray_7 disabled:opacity-70 disabled:cursor-not-allowed h-8'
           >
-            <span className='icon-back text-base mr-1' />
+            <span className='icon-back text-base' />
           </ActionButton>
 
           {/* Page numbers */}
@@ -157,7 +156,7 @@ export default function Pagination({
             disabled={currentPage === totalPages}
             className='text-sm hover:bg-blended-gray_7 disabled:opacity-50 disabled:cursor-not-allowed h-8'
           >
-            <span className='icon-next-arrow text-base mr-1' />
+            <span className='icon-next-arrow text-base' />
           </ActionButton>
         </div>
       )}

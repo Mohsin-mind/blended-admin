@@ -32,5 +32,5 @@ export async function getUsers(params = {}) {
 
 // Invite teacher
 export async function inviteTeacher(teacherData) {
-  return await handlePost(api, 'POST', '/admin/teachers/invite', teacherData);
+  return await handlePost(api, 'POST', '/admin/invite-teacher', teacherData);
 }

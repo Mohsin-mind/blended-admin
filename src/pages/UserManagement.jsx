@@ -15,6 +15,7 @@ import {
   TEACHER_DOMAINS,
   USER_ROLES,
   USER_STATUS,
+  DEFAULT_PAGE_SIZE,
 } from '@/utils/constant/allConstant';
 import EyeIcon from '@/assets/images/svg/eye.svg';
 import EditIcon from '@/assets/images/svg/edit.svg';
@@ -23,7 +24,7 @@ const UserManagement = () => {
   const [activeTab, setActiveTab] = useState('teachers');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [sortBy, setSortBy] = useState('firstName');
   const [sortOrder, setSortOrder] = useState('asc');
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
@@ -414,17 +415,17 @@ const UserManagement = () => {
               </div>
             </div>
 
-            <p className='text-sm text-blended-gray_9'>
+            <p className='text-base text-blended-gray_9'>
               Good to have to categorise the teacher if they decide to skip the
               details in their profile.
             </p>
 
             {/* Core Subjects */}
             <div className='space-y-3'>
-              <h4 className='text-base font-medium text-blended-gray_5'>
+              <h4 className='text-sm font-medium text-blended-gray_5 mt-8'>
                 WHAT CORE SUBJECTS IS THE TEACHER MOST QUALIFIED TO TEACH?
               </h4>
-              <div className='space-y-2'>
+              <div className='flex items-center flex-wrap gap-2'>
                 {Object.values(TEACHER_SUBJECTS).map(subject => (
                   <Checkbox
                     key={subject}
@@ -442,11 +443,11 @@ const UserManagement = () => {
 
             {/* Domains */}
             <div className='space-y-3'>
-              <h4 className='text-base font-medium text-blended-gray_5'>
+              <h4 className='text-sm font-medium text-blended-gray_5 mt-8'>
                 WHICH BROADER DOMAINS OR APPLICATION AREAS IS THE TEACHER
                 PROFICIENT IN?
               </h4>
-              <div className='space-y-2'>
+              <div className='flex items-center flex-wrap gap-2'>
                 {Object.values(TEACHER_DOMAINS).map(domain => (
                   <Checkbox
                     key={domain}

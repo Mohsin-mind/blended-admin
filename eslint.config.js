@@ -123,10 +123,6 @@ export default [
       'no-labels': 'error',
       'no-lone-blocks': 'error',
       'no-loop-func': 'error',
-      'no-magic-numbers': [
-        'error',
-        { ignore: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-      ],
       'no-multi-spaces': 'error',
       'no-multi-str': 'error',
       'no-new': 'error',
